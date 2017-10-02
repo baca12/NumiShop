@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mały sklep internetowy</title>
+
+	<!-- Bootstrap -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+
+
+</head>
+<!-- nawigacja -->
+<body onload="rotate()">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="container-fluid">
+
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+							<a class="navbar-brand" href="#">NumiShop</a>
+						</div>
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li class="button-koszyk"><a href="#" data-toggle="modal" data-target="#myModal"> (<span class="simpleCart_quantity"></span>)</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+<!-- nawigacja end -->
+
+	<!-- Modal koszyk -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Koszyk <span class="showIfEmpty">jest pusty</span></h4>
+				</div>
+				<div class="hideIfEmpty">
+					<div class="modal-body">
+
+						<div class="simpleCart_items"></div>
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Łącznie</th>
+									<th>Koszty przesyłki</th>
+									<th>Do zapłaty</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="simpleCart_total"></div>
+									</td>
+									<td>
+										<div class="simpleCart_shipping"></div>
+									</td>
+									<td>
+										<div class="simpleCart_grandTotal"></div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div class="modal-footer">
+
+						<!-- button to empty the cart -->
+						<a href="javascript:;" class="simpleCart_empty btn btn-default">Opróżnij koszyk</a>
+						<!-- create a checkout button -->
+						<a href="javascript:;" class="simpleCart_checkout btn btn-primary">Złóż zamówienie</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- modal koszyk end -->
+
+
+
+
+<!-- modal zoom -->
+	<div class="modal" id="infoModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="Modal_title"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class=".col-xs-8 col-xs-offset-1" id="Modal_zoom"></div>
+						</div>
+
+						<div class="modal-footer">
+							<div class="row">
+
+								<div id="info">
+									<table>
+										<tr>
+											<td>Metal:</td>
+											<td id="metal"></td>
+										</tr>
+										<tr>
+											<td>Próba:</td>
+											<td id="proba"></td>
+										</tr>
+										<tr>
+											<td>Masa:</td>
+											<td id="masa"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<!-- modal zoom end -->
+
+
+<!-- body -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 item text-center">
+				<div class="simpleCart_shelfItem">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_name">20 dolarów St. Gaudens</h2>
+
+							<div id="pudelko" onclick="rotate()">
+								<div id="karta">
+									<div id="awers1" class="awers"></div>
+									<div id="rewers1" class="rewers"> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_price">4780.00 zł</h2>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="img/zoom.png" onclick="zoom(1)" id="l1" data-toggle="modal" data-target="#infoModal">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" value="1" class="item_Quantity form-control" placeholder="ilość">
+						</div>
+						<div class="col-xs-5">
+							<input type="button" class="item_add btn btn-primary" value="Do koszyka">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /simpleCart_shelfItem -->
+			</div>
+			<!-- /col-md-4 -->
+
+			<div class="col-md-4 item text-center">
+				<div class="simpleCart_shelfItem">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_name">20 dolarów Liberty</h2>
+							<div id="pudelko" onclick="rotate()">
+								<div id="karta">
+									<div id="awers2" class="awers"></div>
+									<div id="rewers2" class="rewers"> </div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_price">4720.00 zł</h2>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="img/zoom.png" onclick="zoom(2)" id="l2" data-toggle="modal" data-target="#infoModal">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" value="1" class="item_Quantity form-control" placeholder="ilość">
+						</div>
+						<div class="col-xs-5">
+							<input type="button" class="item_add btn btn-primary" value="Do koszyka">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /simpleCart_shelfItem -->
+			</div>
+			<!-- /col-md-4 -->
+
+			<div class="col-md-4 item text-center">
+				<div class="simpleCart_shelfItem">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_name">10 dolarów Liberty</h2>
+							<div id="pudelko" onclick="rotate()">
+								<div id="karta">
+									<div id="awers3" class="awers"></div>
+									<div id="rewers3" class="rewers"> </div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_price">2360.00 zł</h2>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="img/zoom.png" onclick="zoom(3)" id="l3" data-toggle="modal" data-target="#infoModal">
+
+						</div>
+						<div class="col-xs-3">
+							<input type="text" value="1" class="item_Quantity form-control" placeholder="ilość">
+						</div>
+						<div class="col-xs-5">
+							<input type="button" class="item_add btn btn-primary" value="Do koszyka">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /simpleCart_shelfItem -->
+			</div>
+			<!-- /col-md-4 -->
+
+		</div>
+		<!-- /row -->
+
+		<div class="row">
+			<div class="col-md-4 item text-center">
+				<div class="simpleCart_shelfItem">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_name">10 rubli Mikołaja II</h2>
+							<div id="pudelko" onclick="rotate()">
+								<div id="karta">
+									<div id="awers4" class="awers"></div>
+									<div id="rewers4" class="rewers"> </div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_price">1250.00 zł</h2>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="img/zoom.png" onclick="zoom(4)" id="l4" data-toggle="modal" data-target="#infoModal">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" value="1" class="item_Quantity form-control" placeholder="ilość">
+						</div>
+						<div class="col-xs-5">
+							<input type="button" class="item_add btn btn-primary" value="Do koszyka">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /simpleCart_shelfItem -->
+			</div>
+			<!-- /col-md-4 -->
+
+			<div class="col-md-4 item text-center">
+				<div class="simpleCart_shelfItem">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_name">20 franków Francja</h2>
+							<div id="pudelko" onclick="rotate()">
+								<div id="karta">
+									<div id="awers5" class="awers"></div>
+									<div id="rewers5" class="rewers"> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_price">870.00 zł</h2>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="img/zoom.png" onclick="zoom(5)" id="l5" data-toggle="modal" data-target="#infoModal">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" value="1" class="item_Quantity form-control" placeholder="ilość">
+						</div>
+						<div class="col-xs-5">
+							<input type="button" class="item_add btn btn-primary" value="Do koszyka">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /simpleCart_shelfItem -->
+			</div>
+			<!-- /col-md-4 -->
+
+			<div class="col-md-4 item text-center">
+				<div class="simpleCart_shelfItem">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_name">20 marek Prusy</h2>
+							<div id="pudelko" onclick="rotate()">
+								<div id="karta">
+									<div id="awers6" class="awers"></div>
+									<div id="rewers6" class="rewers"> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_price">1090.00 zł</h2>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="img/zoom.png" onclick="zoom(6)" id="l6" data-toggle="modal" data-target="#infoModal">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" value="1" class="item_Quantity form-control" placeholder="ilość">
+						</div>
+						<div class="col-xs-5">
+							<input type="button" class="item_add btn btn-primary" value="Do koszyka">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /simpleCart_shelfItem -->
+			</div>
+			<!-- /col-md-4 -->
+		</div>
+		<!-- /row -->
+		<div class="row">
+			<div class="col-md-4 item text-center">
+				<div class="simpleCart_shelfItem">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_name">1 funt Wielka Brytania</h2>
+							<div id="pudelko" onclick="rotate()">
+								<div id="karta">
+									<div id="awers7" class="awers"></div>
+									<div id="rewers7" class="rewers"> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_price">1100.00 zł</h2>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="img/zoom.png" onclick="zoom(7)" id="l7" data-toggle="modal" data-target="#infoModal">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" value="1" class="item_Quantity form-control" placeholder="ilość">
+						</div>
+						<div class="col-xs-5">
+							<input type="button" class="item_add btn btn-primary" value="Do koszyka">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /simpleCart_shelfItem -->
+			</div>
+			<!-- /col-md-4 -->
+
+			<div class="col-md-4 item text-center">
+				<div class="simpleCart_shelfItem">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_name">20 franków Szwajcaria</h2>
+							<div id="pudelko" onclick="rotate()">
+								<div id="karta">
+									<div id="awers8" class="awers"></div>
+									<div id="rewers8" class="rewers"> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_price">870.00 zł</h2>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="img/zoom.png" onclick="zoom(8)" id="l8" data-toggle="modal" data-target="#infoModal">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" value="1" class="item_Quantity form-control" placeholder="ilość">
+						</div>
+						<div class="col-xs-5">
+							<input type="button" class="item_add btn btn-primary" value="Do koszyka">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /simpleCart_shelfItem -->
+			</div>
+			<!-- /col-md-4 -->
+
+			<div class="col-md-4 item text-center">
+				<div class="simpleCart_shelfItem">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_name">1 Dukat Austriacki</h2>
+							<div id="pudelko" onclick="rotate()">
+								<div id="karta">
+									<div id="awers9" class="awers"></div>
+									<div id="rewers9" class="rewers"> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="item_price">520.00 zł</h2>
+						</div>
+					</div>
+					<!-- /row -->
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="img/zoom.png" onclick="zoom(9)" id="l9" data-toggle="modal" data-target="#infoModal">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" value="1" class="item_Quantity form-control" placeholder="ilość">
+						</div>
+						<div class="col-xs-5">
+							<input type="button" class="item_add btn btn-primary" value="Do koszyka">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /simpleCart_shelfItem -->
+			</div>
+			<!-- /col-md-4 -->
+
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+
+
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+	<script src="js/simpleCart.js"></script>
+	<script src="js/script.js">
+
+
+	</script>
+
+</body>
+
+</html>
